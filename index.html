@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A responsive, frontend-only Instagram-inspired login page demo."
+    />
+    <title>Instagram</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Arial, sans-serif;
+        color: #262626;
+        background: #fafafa;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      main {
+        width: 100%;
+        max-width: 350px;
+        margin: auto 0;
+        padding: 32px 0 24px;
+      }
+
+      .login-card,
+      .signup-card {
+        border: 1px solid #dbdbdb;
+        background: #fff;
+        text-align: center;
+      }
+
+      .login-card {
+        padding: 38px 39px 22px;
+      }
+
+      .wordmark {
+        margin: 0 0 32px;
+        color: #262626;
+        font-family: "Brush Script MT", "Segoe Script", cursive;
+        font-size: 51px;
+        font-weight: 600;
+        letter-spacing: -3px;
+        line-height: 1;
+      }
+
+      form {
+        display: grid;
+        gap: 6px;
+      }
+
+      .field {
+        position: relative;
+      }
+
+      input {
+        width: 100%;
+        height: 38px;
+        padding: 9px 10px;
+        border: 1px solid #dbdbdb;
+        border-radius: 3px;
+        outline: none;
+        background: #fafafa;
+        color: #262626;
+        font: inherit;
+        font-size: 12px;
+      }
+
+      input:focus {
+        border-color: #a8a8a8;
+      }
+
+      input::placeholder {
+        color: #737373;
+      }
+
+      .password-input {
+        padding-right: 54px;
+      }
+
+      .show-password {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 38px;
+        padding: 0 10px;
+        border: 0;
+        background: transparent;
+        color: #262626;
+        cursor: pointer;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .login-button {
+        height: 32px;
+        margin-top: 8px;
+        border: 0;
+        border-radius: 8px;
+        background: #4cb5f9;
+        color: #fff;
+        cursor: pointer;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .login-button:hover {
+        background: #1877f2;
+      }
+
+      .login-button:focus-visible,
+      .show-password:focus-visible,
+      a:focus-visible {
+        outline: 2px solid #1877f2;
+        outline-offset: 2px;
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin: 20px 0 22px;
+        color: #737373;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .divider::before,
+      .divider::after {
+        height: 1px;
+        flex: 1;
+        background: #dbdbdb;
+        content: "";
+      }
+
+      .facebook-login,
+      .forgot-password,
+      .signup-card a {
+        color: #00376b;
+        font-size: 12px;
+        text-decoration: none;
+      }
+
+      .facebook-login {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: #385185;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .facebook-icon {
+        display: inline-grid;
+        width: 16px;
+        height: 16px;
+        place-items: end center;
+        border-radius: 2px;
+        background: #385185;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 15px;
+      }
+
+      .forgot-password {
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      .signup-card {
+        margin-top: 10px;
+        padding: 20px 12px;
+        font-size: 14px;
+      }
+
+      .signup-card a {
+        color: #0095f6;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .get-app {
+        margin: 18px 0 0;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .demo-note {
+        min-height: 18px;
+        margin: 12px 0 0;
+        color: #737373;
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      footer {
+        width: 100%;
+        padding: 20px 16px 28px;
+        color: #737373;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      footer nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 16px;
+        margin-bottom: 16px;
+      }
+
+      footer a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      @media (max-width: 450px) {
+        body {
+          background: #fff;
+        }
+
+        main {
+          margin: 0;
+          padding: 0;
+        }
+
+        .login-card,
+        .signup-card {
+          border-color: transparent;
+        }
+
+        .login-card {
+          padding: 44px 39px 22px;
+        }
+
+        footer {
+          padding-bottom: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="login-card" aria-label="Log in">
+        <h1 class="wordmark">Instagram</h1>
+        <form id="login-form">
+          <label class="field">
+            <span hidden>Phone number, username, or email</span>
+            <input
+              id="username-field"
+              name="username"
+              type="text"
+              placeholder="Phone number, username, or email"
+              autocomplete="username"
+              aria-label="Phone number, username, or email"
+              required
+            />
+          </label>
+          <label class="field" id="email-field" style="display: none">
+            <span hidden>Email</span>
+            <input
+              id="email-input"
+              name="email"
+              type="email"
+              placeholder="Email address"
+              autocomplete="email"
+              aria-label="Email address"
+            />
+          </label>
+          <label class="field">
+            <span hidden>Password</span>
+            <input
+              id="password"
+              class="password-input"
+              name="password"
+              type="password"
+              placeholder="Password"
+              autocomplete="current-password"
+              aria-label="Password"
+              required
+            />
+            <button
+              class="show-password"
+              id="toggle-password"
+              type="button"
+              aria-controls="password"
+              aria-pressed="false"
+            >
+              Show
+            </button>
+          </label>
+          <button class="login-button" type="submit">Log in</button>
+        </form>
+        <div class="divider" aria-hidden="true">OR</div>
+        <a class="facebook-login" href="#" id="facebook-link">
+          <span class="facebook-icon" aria-hidden="true">f</span>
+          Log in with Facebook
+        </a>
+        <a class="forgot-password" href="#" id="forgot-link">Forgot password?</a>
+        <p class="demo-note" id="demo-message" role="status" aria-live="polite">
+          Demo only — your information is not sent or stored.
+        </p>
+      </section>
+      <section class="signup-card" aria-label="Sign up">
+        Don't have an account? <a href="#" id="signup-link">Sign up</a>
+      </section>
+      <p class="get-app">Get the app.</p>
+    </main>
+
+    <footer>
+      <nav aria-label="Footer">
+        <a href="#">Meta</a>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Jobs</a>
+        <a href="#">Help</a>
+        <a href="#">API</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Locations</a>
+      </nav>
+      <span>© 2026 Instagram</span>
+    </footer>
+
+    <script>
+      const API_URL = "http://localhost:5000/api";
+      const passwordInput = document.querySelector("#password");
+      const passwordToggle = document.querySelector("#toggle-password");
+      const demoMessage = document.querySelector("#demo-message");
+      const loginForm = document.querySelector("#login-form");
+      const usernameField = document.querySelector("#username-field");
+      const emailField = document.querySelector("#email-field");
+
+      let isSignupMode = false;
+
+      passwordToggle.addEventListener("click", () => {
+        const isVisible = passwordInput.type === "text";
+        passwordInput.type = isVisible ? "password" : "text";
+        passwordToggle.textContent = isVisible ? "Show" : "Hide";
+        passwordToggle.setAttribute("aria-pressed", String(!isVisible));
+      });
+
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const username = document.querySelector('[name="username"]').value;
+        const password = document.querySelector('[name="password"]').value;
+        const email = document.querySelector('[name="email"]')?.value || username;
+
+        try {
+          const endpoint = isSignupMode
+            ? `${API_URL}/auth/signup`
+            : `${API_URL}/auth/login`;
+
+          const payload = { username, password };
+          if (isSignupMode) {
+            payload.email = email;
+            payload.fullName = "";
+          }
+
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            localStorage.setItem("authToken", data.token);
+            demoMessage.textContent = `✓ ${data.message}. Token saved to localStorage.`;
+            demoMessage.style.color = "#31a24c";
+            loginForm.reset();
+          } else {
+            demoMessage.textContent = `✗ Error: ${data.error}`;
+            demoMessage.style.color = "#e74c3c";
+          }
+        } catch (error) {
+          demoMessage.textContent = `✗ Connection error: ${error.message}`;
+          demoMessage.style.color = "#e74c3c";
+        }
+      });
+
+      document.querySelector("#signup-link").addEventListener("click", (event) => {
+        event.preventDefault();
+        isSignupMode = !isSignupMode;
+        const button = document.querySelector(".login-button");
+        const title = document.querySelector(".wordmark").textContent;
+        button.textContent = isSignupMode ? "Sign up" : "Log in";
+        document.querySelector(".signup-card").style.display = isSignupMode
+          ? "none"
+          : "block";
+        
+        if (isSignupMode) {
+          usernameField.placeholder = "Username";
+          usernameField.setAttribute("aria-label", "Username");
+          emailField.style.display = "block";
+          demoMessage.textContent = "Sign up to create a new account";
+        } else {
+          usernameField.placeholder = "Phone number, username, or email";
+          usernameField.setAttribute("aria-label", "Phone number, username, or email");
+          emailField.style.display = "none";
+          demoMessage.textContent = "Log in to your account";
+        }
+        demoMessage.style.color = "#262626";
+      });
+
+      for (const link of document.querySelectorAll('a[href="#"]')) {
+        if (link.id !== "signup-link") {
+          link.addEventListener("click", (event) => event.preventDefault());
+        }
+      }
+    </script>
+  </body>
+</html>

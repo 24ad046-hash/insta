@@ -1,0 +1,5 @@
+.env
+node_modules/
+instagram.db
+*.log
+.DS_Store
